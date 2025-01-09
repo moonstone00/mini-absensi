@@ -10,7 +10,7 @@
   "description": "Backend Mini Absensi",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "api": "node server.js"
   },
   "author": "Ghifani",
   "license": "ISC"
