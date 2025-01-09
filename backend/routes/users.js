@@ -3,7 +3,7 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
     res.status(200).json({
-        data: "Ghifani backend 1",
+        data: "Ghifani Ikhsan backend 1",
         metadata: "test user endpoint"
     })
 })

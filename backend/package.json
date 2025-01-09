@@ -3,6 +3,7 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "mysql2": "^3.12.0",
+    "nodemon": "^3.1.9",
     "sequelize": "^6.37.5"
   },
   "name": "backend",
@@ -10,7 +11,7 @@
   "description": "Backend Mini Absensi",
   "main": "server.js",
   "scripts": {
-    "api": "node server.js"
+    "api": "nodemon server.js"
   },
   "author": "Ghifani",
   "license": "ISC"
