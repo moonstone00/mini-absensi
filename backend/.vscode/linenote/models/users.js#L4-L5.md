@@ -1,0 +1,1 @@
+Karena saya ingin memberikan nama agar lebih mudah dibaca jadi saya mengakali nya dengan membuat User mewarisi sifat2 dari Model.
