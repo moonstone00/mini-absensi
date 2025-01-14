@@ -3,8 +3,8 @@ import { Container, Form, Button } from 'react-bootstrap'
 
 export default function Login({title, description}) {
 
-    const handleNIP = (inputNIP) => {
-        console.log(inputNIP)
+    const handleNIM = (inputNIM) => {
+        console.log(inputNIM)
     }
 
     const handlePassword = (inputPassword) => {
@@ -29,7 +29,7 @@ export default function Login({title, description}) {
                     type='number' 
                     placeholder='Masukkan NIP anda' 
                     required 
-                    onChange={(event) => handleNIP(event.target.value)}
+                    onChange={(event) => handleNIM(event.target.value)}
                     />
             </Form.Group>
             <Form.Group>
