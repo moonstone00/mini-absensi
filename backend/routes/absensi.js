@@ -5,7 +5,7 @@ const AbsensiModel = require('../models/absensi')
 router.get('/', async (req, res) => {
     const absensi = await AbsensiModel.findAll()
     res.status(200).json({
-        data: absensi,
+        absensi,
         metadata: "test absensi endpoint"
     })
 })

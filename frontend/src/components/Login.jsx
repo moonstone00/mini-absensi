@@ -1,14 +1,36 @@
 import ReactTypingEffect from 'react-typing-effect'
 import { Container, Form, Button } from 'react-bootstrap'
+import { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login({title, description}) {
+    const [NIM, setNIM] = useState("")
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate()
 
     const handleNIM = (inputNIM) => {
-        console.log(inputNIM)
+        setNIM(inputNIM)
     }
 
     const handlePassword = (inputPassword) => {
-        console.log(inputPassword)
+        setPassword(inputPassword)
+    }
+
+    const userLogin = () => {
+        const requestingData = {
+            nim: NIM,
+            password: password
+        }
+        axios({
+            method: 'POST',
+            url: 'http://localhost:3200/users/login',
+            data: requestingData
+        }).then((result) => {
+            localStorage.setItem("nim", result.data.data.nim)
+            localStorage.setItem("nama", result.data.data.nama)
+            navigate('/dashboard')
+        })
     }
 
   return (
@@ -41,7 +63,7 @@ export default function Login({title, description}) {
                     onChange={(event) => handlePassword(event.target.value)}
                 />
             </Form.Group>
-            <Button className='mt-4 w-100' >Login Sekarang</Button>
+            <Button className='mt-4 w-100' onClick={() => userLogin()} >Login Sekarang</Button>
         </Form>
     </Container>
   )
