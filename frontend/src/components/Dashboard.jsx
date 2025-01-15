@@ -2,9 +2,11 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Button, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
+import Edit from "./Edit"
 
 export default function Dashboard() {
     const [absensiList, setAbsensiList] = useState([])
+    const [absenNotif, setAbsenNotif] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -17,7 +19,7 @@ export default function Dashboard() {
             method: 'GET',
             url: 'http://localhost:3200/absensi',
         }).then((result) => setAbsensiList(result.data.absensi))
-    }, [absensiList])
+    }, [absenNotif])
 
     const logout = () => {
         localStorage.clear()
@@ -32,7 +34,9 @@ export default function Dashboard() {
             method: 'POST',
             url: `http://localhost:3200/absensi/${params}`,
             data: requestingData
-        }).then((result) => console.log(result.data))
+        }).then(() => {
+            setAbsenNotif(!absenNotif)
+        })
     }
 
     return (
@@ -41,6 +45,8 @@ export default function Dashboard() {
                 <h1>Hello, {localStorage.getItem('nama')}🙌</h1>
                 <p>NIM: {localStorage.getItem('nim')}</p>
             </div>
+
+            <Edit/>
                 
             <table className="table">
                 <thead>
