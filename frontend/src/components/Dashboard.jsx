@@ -1,9 +1,9 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Container } from "react-bootstrap"
+import { Button, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 
-export default function Dashboard({title}) {
+export default function Dashboard() {
     const [absensiList, setAbsensiList] = useState([])
     const navigate = useNavigate()
 
@@ -17,15 +17,31 @@ export default function Dashboard({title}) {
             method: 'GET',
             url: 'http://localhost:3200/absensi',
         }).then((result) => setAbsensiList(result.data.absensi))
-    }, [])
+    }, [absensiList])
+
+    const logout = () => {
+        localStorage.clear()
+        navigate('/login')
+    }
+
+    const absen = (params) => {
+        const requestingData = {
+            nim: localStorage.getItem('nim')
+        }
+        axios({
+            method: 'POST',
+            url: `http://localhost:3200/absensi/${params}`,
+            data: requestingData
+        }).then((result) => console.log(result.data))
+    }
 
     return (
         <Container>
-
             <div>
                 <h1>Hello, {localStorage.getItem('nama')}🙌</h1>
                 <p>NIM: {localStorage.getItem('nim')}</p>
             </div>
+                
             <table className="table">
                 <thead>
                     <tr>
@@ -38,8 +54,8 @@ export default function Dashboard({title}) {
                 </thead>
                 <tbody>
                     {
-                        absensiList.map((absen, index) => {
-                            const {users_nim, status, createdAt} = absen
+                        absensiList.map((absensi, index) => {
+                            const {users_nim, status, createdAt} = absensi
                             return (
                                 <tr key={index} >
                                     <th scope="row">{index + 1}</th>
@@ -52,6 +68,13 @@ export default function Dashboard({title}) {
                     }
                 </tbody>
             </table>
+            <div className="d-flex justify-content-between" >
+                <Button variant="danger" onClick={() => logout()} >Logout</Button>
+                <div className="d-flex gap-2" >
+                    <Button variant="primary" onClick={() => absen('checkin')} >Checkin</Button>
+                    <Button variant="danger" onClick={() => absen('checkout')} >Checkout</Button>
+                </div>
+            </div>
         </Container>
     )
 }

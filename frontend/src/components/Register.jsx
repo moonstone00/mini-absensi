@@ -34,6 +34,12 @@ export default function Register({title, description}) {
             data: requestingData
         }).then((result) => {
             console.log(result.data)
+            if(result.data.registered) {
+                alert("Pendaftaran Berhasil")
+                navigate('/login')
+            } else {
+                alert("Pendaftaran Gagal")
+            }
         })
     }
 
