@@ -24,7 +24,7 @@ export default function Dashboard({title}) {
 
             <div>
                 <h1>Hello, {localStorage.getItem('nama')}🙌</h1>
-                <p>NIM{localStorage.getItem('nim')}</p>
+                <p>NIM: {localStorage.getItem('nim')}</p>
             </div>
             <table className="table">
                 <thead>

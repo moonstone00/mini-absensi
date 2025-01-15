@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
     })
 
     res.status(200).json({
-        data: users,
+        registered: users,
         metadata: "test user endpoint"
     })
 })
