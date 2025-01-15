@@ -30,6 +30,8 @@ export default function Login({title, description}) {
             localStorage.setItem("nim", result.data.data.nim)
             localStorage.setItem("nama", result.data.data.nama)
             navigate('/dashboard')
+        }).catch((error) => {
+            alert("NIM atau password salah")
         })
     }
 

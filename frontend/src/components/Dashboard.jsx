@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { Button, Container } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import Edit from "./Edit"
+import { logout } from "../../utils/logout"
 
 export default function Dashboard() {
     const [absensiList, setAbsensiList] = useState([])
@@ -11,7 +12,6 @@ export default function Dashboard() {
 
     useEffect(() => {
         if(!localStorage.getItem('nama') && !localStorage.getItem('nim')) {
-            console.log("User belum login")
             navigate('/login')
         }
 
@@ -21,10 +21,6 @@ export default function Dashboard() {
         }).then((result) => setAbsensiList(result.data.absensi))
     }, [absenNotif])
 
-    const logout = () => {
-        localStorage.clear()
-        navigate('/login')
-    }
 
     const absen = (params) => {
         const requestingData = {
@@ -53,7 +49,6 @@ export default function Dashboard() {
                     <tr>
                     <th scope="col">No</th>
                     <th scope="col">NIM</th>
-                    {/* <th scope="col">Nama</th> */}
                     <th scope="col">Status</th>
                     <th scope="col">Tanggal</th>
                     </tr>

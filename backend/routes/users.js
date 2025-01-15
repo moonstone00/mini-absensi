@@ -61,14 +61,14 @@ router.post('/login', async (req, res) => {
 
     try {
         const check = await passwordCheck(nim, password)
-        if(check) {
+        if(check.compare) {
             res.status(200).json({
                 data: check.userData,
                 metadata: "user login success"
             })
         }
     } catch(error) {
-        res.status(500).json({
+        res.status(400).json({
             error: "Data Invalid"
         })
     }
